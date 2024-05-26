@@ -36,6 +36,18 @@
         .login-btn:hover {
             background-color: #0056b3;
         }
+        .register-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .register-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -45,6 +57,7 @@
         <p>Con solo unos clics, podrás añadir nuevos ingresos y salidas, visualizar tu saldo actual y obtener un resumen de tus hábitos de gasto. Además, nuestra interfaz amigable te permite analizar tus finanzas de forma clara y práctica.</p>
         <p>Empieza hoy mismo a tomar el control de tu dinero. Descubre cómo una buena gestión financiera puede transformar tu vida y ayudarte a alcanzar tus sueños.</p>
         <a href="{% url 'InicioDeSesion' %}" class="login-btn">Iniciar sesión</a>
+        <a href="{% url 'Registro' %}" class="register-btn">Registrase</a>
     </div>
 </body>
 </html>

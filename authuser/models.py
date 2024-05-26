@@ -4,8 +4,8 @@ from django.utils import timezone
 
 class CustomUserManager(UserManager):
     def _create_user(self, username, email, password, **extra_fields):
-        if not username:
-            raise ValueError('Debes proporcionar un nombre de usuario válido')
+        if not email:
+            raise ValueError('Deberías meter un email válido')
         
         email = self.normalize_email(email)
         user = self.model(username=username, email=email, **extra_fields)
@@ -13,23 +13,24 @@ class CustomUserManager(UserManager):
         user.save(using=self._db)
         return user
     
-    def create_user(self, username=None, email=None, password=None, **extra_fields):
-        extra_fields.setdefault('is_staff', False)
-        extra_fields.setdefault('is_superuser', False)
+    def create_user(self, username, email=None, password=None, **extra_fields):
+        extra_fields.setdefault("is_staff", False)
+        extra_fields.setdefault("is_superuser", False)
         return self._create_user(username, email, password, **extra_fields)
     
     def create_superuser(self, username, email, password, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
         return self._create_user(username, email, password, **extra_fields)
-
+    
 class User(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(max_length=20, unique=True)
-    email = models.EmailField(max_length=255, unique=True, null=True, blank=True)
+    username = models.CharField(max_length=20, unique=True, null=False)
+    email = models.EmailField(max_length=255, unique=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     
     is_active = models.BooleanField(default=True)
+    is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
 
     date_joined = models.DateTimeField(default=timezone.now)
@@ -37,6 +38,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'username'
+    EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = ['email', 'first_name', 'last_name']
 
     class Meta:
