@@ -1,0 +1,47 @@
+# Directorio del entorno virtual
+venv/
+
+# Archivos compilados de Python
+*.pyc
+*.pyo
+
+# Archivos de base de datos
+db.sqlite3
+*sqlite3
+
+# Archivos de registro de depuración
+*.log
+*log*
+
+# Archivos de caché
+*.cache
+*cache*
+
+# Configuración local
+local_settings.py
+
+# Archivos de media
+media/
+static/
+
+# Archivos de prueba
+tests/
+
+# Configuraciones específicas del IDE
+# (Ajusta según sea necesario)
+.idea/
+.vscode/
+
+# Archivos generados automáticamente por Docker
+docker-compose*
+
+# Archivos de compilación específicos del sistema operativo
+# (Ajusta según sea necesario)
+*.DS_Store
+
+env
+venv
+media
+img
+__pycache__
+media
