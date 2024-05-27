@@ -1,10 +1,10 @@
-<!-- templates/authuser/InicioDeSesion.html -->
+<!-- templates/authuser/add_income.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de Sesión</title>
+    <title>Añadir Ingreso</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -27,7 +27,7 @@
         .input-group {
             margin: 10px 0;
         }
-        .input-group input {
+        .input-group input, .input-group textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -53,16 +53,11 @@
 </head>
 <body>
     <div class="container">
-        <h2>Inicio de Sesión</h2>
+        <h2>Añadir Ingreso</h2>
         <form method="POST">
             {% csrf_token %}
-            <div class="input-group">
-                <input type="text" name="username" placeholder="Nombre de usuario" required>
-            </div>
-            <div class="input-group">
-                <input type="password" name="password" placeholder="Contraseña" required>
-            </div>
-            <button type="submit" class="button">Iniciar Sesión</button>
+            {{ form.as_p }}
+            <button type="submit" class="button">Guardar Ingreso</button>
         </form>
     </div>
 </body>

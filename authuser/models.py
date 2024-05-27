@@ -22,7 +22,7 @@ class CustomUserManager(UserManager):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
         return self._create_user(username, email, password, **extra_fields)
-    
+
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=20, unique=True, null=False)
     email = models.EmailField(max_length=255, unique=True)
@@ -52,14 +52,25 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.first_name
     
 
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    CATEGORY_TYPES = (
+        ('income', 'Income'),
+        ('expense', 'Expense'),
+    )
+    category_type = models.CharField(max_length=7, choices=CATEGORY_TYPES)
+
+    def __str__(self):
+        return self.name
+
 class Transactions(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     amount = models.FloatField()
     date = models.DateTimeField(default=timezone.now)
     description = models.CharField(max_length=255)
-    category = models.CharField(max_length=255)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
 class Account(models.Model):
-    user = models.ManyToManyField(User, related_name='user_account')
+    user = models.ForeignKey(User, related_name='user_account', on_delete=models.CASCADE)
     balance = models.FloatField()
     date = models.DateTimeField(default=timezone.now)
