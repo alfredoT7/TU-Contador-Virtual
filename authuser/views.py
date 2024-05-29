@@ -3,7 +3,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import RegistroUsuarioForm, ExpenseForm, IncomeForm
 from .models import Account, Transactions, User
-
+from django.contrib.auth.decorators import login_required
+#@login_required
 def home(request):
     return render(request, 'authuser/home.html')
 
@@ -35,7 +36,7 @@ def registro_usuario(request):
     else:
         form = RegistroUsuarioForm()
     return render(request, 'authuser/Registro.html', {'form': form})
-
+@login_required
 def PanelInicio(request):
     if not request.user.is_authenticated:
         return redirect('InicioDeSesion')
@@ -43,7 +44,7 @@ def PanelInicio(request):
     account = Account.objects.get(user=request.user)
     transactions = Transactions.objects.filter(user=request.user).order_by('-date')
     return render(request, 'authuser/PanelInicio.html', {'account': account, 'transactions': transactions})
-
+@login_required
 def add_expense(request):
     if request.method == 'POST':
         form = ExpenseForm(request.POST)
@@ -58,7 +59,7 @@ def add_expense(request):
     else:
         form = ExpenseForm()
     return render(request, 'authuser/add_expense.html', {'form': form})
-
+@login_required
 def add_income(request):
     if request.method == 'POST':
         form = IncomeForm(request.POST)
