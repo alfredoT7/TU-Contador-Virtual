@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+            color: #555;
+        }
+        .login-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .login-btn:hover {
+            background-color: #0056b3;
+        }
+        .register-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .register-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido a tu asistente financiero personal</h1>
+        <p>Aquí, te ayudamos a llevar un control detallado de tus ingresos y gastos de manera sencilla y eficiente. Nuestra herramienta está diseñada para que puedas registrar y monitorear tus movimientos financieros diarios, ayudándote a mantener tus finanzas en orden y alcanzar tus metas económicas.</p>
+        <p>Con solo unos clics, podrás añadir nuevos ingresos y salidas, visualizar tu saldo actual y obtener un resumen de tus hábitos de gasto. Además, nuestra interfaz amigable te permite analizar tus finanzas de forma clara y práctica.</p>
+        <p>Empieza hoy mismo a tomar el control de tu dinero. Descubre cómo una buena gestión financiera puede transformar tu vida y ayudarte a alcanzar tus sueños.</p>
+        <a href="{% url 'InicioDeSesion' %}" class="login-btn">Iniciar sesión</a>
+        <a href="{% url 'Registro' %}" class="register-btn">Registrase</a>
+    </div>
+</body>
+</html>

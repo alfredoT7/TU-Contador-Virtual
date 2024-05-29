@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Inicio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 80%;
+        }
+        h1 {
+            color: #333;
+        }
+        .balance {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        .transactions {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .button {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1em;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Panel de Inicio</h1>
+        <p class="balance">Saldo Actual: {{ account.balance }}</p>
+        <div>
+            <a href="{% url 'add_expense' %}" class="button">Añadir Gasto</a>
+            <a href="{% url 'add_income' %}" class="button">Añadir Ingreso</a>
+        </div>
+        <div class="transactions">
+            <h2>Transacciones Recientes</h2>
+            <ul>
+                {% for transaction in transactions %}
+                <li>{{ transaction.date }} - {{ transaction.description }}: {{ transaction.amount }} ({{ transaction.category.category_type }})</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
